@@ -54,11 +54,24 @@ let dog = [
   }
 ];
 
-const animals = new Stack();
-animals.push(cat[0]);
-animals.push(cat[1]);
-animals.push(dog[0]);
-animals.push(dog[1]);
+const dogs = new Stack();
+const cats = new Stack();
+
+
+function peek(stack) {
+  if (stack.top === null) {
+    throw new Error('The stack is empty');
+    // Throw an error if the stack is empty!
+  }
+
+  return stack.top.data;
+}
+
+cats.push(cat[0]);
+cats.push(cat[1]);
+dogs.push(dog[0]);
+dogs.push(dog[1]);
+console.log(peek(cats));
 
 /* APP ROUTES */
 app.use(
@@ -85,11 +98,14 @@ function runServer(port = PORT) {
 }
 
 app.get('/api/cat', (req, res) => {
-  return res.json(cat[0]);
+  return res.json(peek(cats));
+  // return res.json(cat[0]);
 });
 
 app.get('/api/dog', (req, res) => {
-  return res.json(dog[0]);
+  return res.json(peek(dogs));
+  // return res.json(dog[0]);
+
 });
 
 // click the adopt
