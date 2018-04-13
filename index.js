@@ -7,14 +7,10 @@ const morgan = require('morgan');
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
 // const {dbConnect} = require('./db-knex');
+const Stack = require('./stack-and-queue/stack');
 
 const app = express();
 
-/**
-*
-  DATA
-*
-*/
 let cat = [
   {
     imageURL:'https://assets3.thrillist.com/v1/image/2622128/size/tmg-slideshow_l.jpg',
@@ -55,6 +51,15 @@ let dog = [
     story: 'Rejected by mother.'
   }
 ];
+
+const animals = new Stack();
+animals.push(cat[0]);
+animals.push(cat[1]);
+animals.push(dog[0]);
+animals.push(dog[1]);
+
+console.log(animals);
+
 
 app.use(
   morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {
