@@ -80,11 +80,11 @@ function runServer(port = PORT) {
 }
 
 app.get('/api/cat', (req, res) => {
-  return res.json(cat[0]);
+  return res.json(cat);
 });
 
 app.get('/api/dog', (req, res) => {
-  return res.json(dog[0]);
+  return res.json(dog);
 });
 
 // click the adopt
