@@ -17,7 +17,7 @@ const app = express();
 */
 let cat = [
   {
-    imageURL:'https://assets3.thrillist.com/v1/image/2622128/size/tmg-slideshow_l.jpg', 
+    imageURL:'https://assets3.thrillist.com/v1/image/2622128/size/tmg-slideshow_l.jpg',
     imageDescription: 'Orange bengal cat with black stripes lounging on concrete.',
     name: 'Fluffy',
     sex: 'Female',
@@ -26,13 +26,13 @@ let cat = [
     story: 'Thrown on the street'
   },
   {
-    imageURL: "https://static.pexels.com/photos/20787/pexels-photo.jpg",
-    imageDescription: "Grey siamese cat with bright green eyes, looking up to the camera.",
-    name: "Tina",
-    sex: "female",
+    imageURL: 'https://static.pexels.com/photos/20787/pexels-photo.jpg',
+    imageDescription: 'Grey siamese cat with bright green eyes, looking up to the camera.',
+    name: 'Tina',
+    sex: 'female',
     age: 3,
-    breed: "Siamese",
-    story: "Abandoned by previous owner."
+    breed: 'Siamese',
+    story: 'Abandoned by previous owner.'
   }
 ];
 
@@ -47,12 +47,12 @@ let dog = [
     story: 'Owner Passed away'
   },
   {
-    imageURL: "http://img.freepik.com/free-photo/husky-breed-dog-with-tongue-out_1187-1500.jpg?size=338&ext=jpg",
-    name: "June",
-    sex: "female",
+    imageURL: 'http://img.freepik.com/free-photo/husky-breed-dog-with-tongue-out_1187-1500.jpg?size=338&ext=jpg',
+    name: 'June',
+    sex: 'female',
     age: 1,
-    breed: "Husky",
-    story: "Rejected by mother."
+    breed: 'Husky',
+    story: 'Rejected by mother.'
   }
 ];
 
@@ -91,12 +91,12 @@ app.get('/api/dog', (req, res) => {
 app.delete('/api/dog', (req, res) => {
   dog = dog.splice(1);
   return res.status(204).end();
-})
+});
 
 app.delete('/api/cat', (req, res) => {
   cat = cat.splice(1);
   return res.status(204).end();
-})
+});
 
 if (require.main === module) {
   dbConnect();
