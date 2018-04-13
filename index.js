@@ -7,9 +7,11 @@ const morgan = require('morgan');
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
 // const {dbConnect} = require('./db-knex');
-const Stack = require('./stack-and-queue/stack');
-
 const app = express();
+
+/* STACK & QUEUE */
+
+const Stack = require('./stack-and-queue/stack');
 
 let cat = [
   {
@@ -58,9 +60,7 @@ animals.push(cat[1]);
 animals.push(dog[0]);
 animals.push(dog[1]);
 
-console.log(animals);
-
-
+/* APP ROUTES */
 app.use(
   morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {
     skip: (req, res) => process.env.NODE_ENV === 'test'
