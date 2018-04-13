@@ -6,7 +6,7 @@ const morgan = require('morgan');
 
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
-// const {dbConnect} = require('./db-knex');
+
 const app = express();
 
 /* STACK & QUEUE */
@@ -97,26 +97,27 @@ function runServer(port = PORT) {
     });
 }
 
-app.get('/api/cat', (req, res) => {
-  return res.json(peek(cats));
-  // return res.json(cat[0]);
+app.get('/api/cat', (req, res, next) => {
+  return res.json(peek(cats))
+    .catch(err => next(err));
 });
 
-app.get('/api/dog', (req, res) => {
-  return res.json(peek(dogs));
-  // return res.json(dog[0]);
-
+app.get('/api/dog', (req, res, next) => {
+  return res.json(peek(dogs))
+    .catch(err => next(err));
 });
 
 // click the adopt
-app.delete('/api/dog', (req, res) => {
-  dog = dog.splice(1);
-  return res.status(204).end();
+app.delete('/api/dog', (req, res, next) => {
+  dogs.pop()
+    .then(res => {return res.status(204).end();})
+    .catch(err => next(err));
 });
 
-app.delete('/api/cat', (req, res) => {
-  cat = cat.splice(1);
-  return res.status(204).end();
+app.delete('/api/cat', (req, res, next) => {
+  cats.pop()
+    .then(res => {return res.status(204).end();})
+    .catch(err => next(err));
 });
 
 if (require.main === module) {
